@@ -10,6 +10,8 @@ app.use(express.json())
 app.use(cors())
 app.use(cookieParser())
 
+mongoose.connect('mongodb://127.0.0.1:27017/employee')
+
 app.listen(3001, () => {
     console.log("Server Running....!")
 })
