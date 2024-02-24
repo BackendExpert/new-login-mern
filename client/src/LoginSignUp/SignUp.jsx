@@ -1,15 +1,21 @@
 import { useState } from "react"
 import "bootstrap/dist/css/bootstrap.min.css"
+import axios from "axios"
 
 const SignUp = () => {
     const [name, SetName] = useState()
     const [email, SetEmail] = useState()
     const [password, SetPassword] = useState()
 
+    const headleSubmit = (e) => {
+        e.preventDefault()
+        axios.post('http://localhost:3001/')
+    }
+
   return (
     <div>
         <div className="container">
-            <form>
+            <form onSubmit={headleSubmit}>
                 <div className="">
                     <label htmlFor="">Name</label>
                     <input 
