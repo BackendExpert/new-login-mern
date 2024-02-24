@@ -7,7 +7,13 @@ const Login = () => {
     const [email, SetEmail] = useState()
     const [password, SetPassword] = useState()
 
-    const headleLogin = (e) => {}
+    const headleLogin = (e) => {
+        e.preventDefault()
+        axios.post('http://localhost:3001/login', {email, password})
+        .then(rec => {
+            //
+        }).catch(err => console.log(err))
+    }
   return (
     <div className="container">
         <form>
