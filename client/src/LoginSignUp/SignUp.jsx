@@ -9,7 +9,10 @@ const SignUp = () => {
 
     const headleSubmit = (e) => {
         e.preventDefault()
-        axios.post('http://localhost:3001/')
+        axios.post('http://localhost:3001/register', {name, email, password})
+        .then(res => {
+            alert("User Created")
+        }).catch(err => console.log(err))
     }
 
   return (
