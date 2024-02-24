@@ -29,6 +29,9 @@ const Login = () => {
                     onChangeCapture={(e) => SetPassword(e.target.value)} 
                     placeholder="Password"/>
             </div>
+            <div className="">
+                <button type="submit" className="btn btn-success">Login</button>
+            </div>
         </form>
         <div className="">
             <p>Don't have an Account ? <Link to={'/SignUp'}>SignUp</Link></p>
