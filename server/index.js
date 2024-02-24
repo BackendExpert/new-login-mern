@@ -1,7 +1,7 @@
 const express = require("express")
 const mongoose = require("mongoose")
 const cors = require("cors")
-const bcrypy = require("bcrypt")
+const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 const cookieParser = require("cookie-parser")
 const UserModel = require("./Models/User")
@@ -16,7 +16,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/employee')
 
 app.post('/register', (req, res) => {
     const {name, email, password} = req.body;
-    bcrypy.hash(password, 10)
+    bcrypt.hash(password, 10)
     .then(hash => {
         UserModel.create({name, email, password: hash})
         .then(user => res.json({status: "OK"}))
@@ -29,6 +29,14 @@ app.post('/login', (req, res) => {
     UserModel.findOne({email: email})
     .then(user => {
         if(user){
+            //password check
+            bcrypt.compare(password, user.password, (err, response) =>{
+                if(response){
+
+                }else{
+                    return res.json("Password not match...!")
+                }
+            })
 
         }else{
             return res.json("No use Found...!")
