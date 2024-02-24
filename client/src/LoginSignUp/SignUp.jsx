@@ -1,18 +1,19 @@
 import { useState } from "react"
 import "bootstrap/dist/css/bootstrap.min.css"
 import axios from "axios"
-import { Link } from "react-router-dom"
+import { Link,useNavigate } from "react-router-dom"
 
 const SignUp = () => {
     const [name, SetName] = useState()
     const [email, SetEmail] = useState()
     const [password, SetPassword] = useState()
+    const navigate = useNavigate()
 
     const headleSubmit = (e) => {
         e.preventDefault()
         axios.post('http://localhost:3001/register', {name, email, password})
         .then(res => {
-            alert("User Created")
+            navigate('/')
         }).catch(err => console.log(err))
     }
 
