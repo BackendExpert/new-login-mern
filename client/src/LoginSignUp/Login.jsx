@@ -4,7 +4,10 @@ import axios from "axios"
 import { Link } from "react-router-dom"
 
 const Login = () => {
-    
+    const [email, SetEmail] = useState()
+    const [password, SetPassword] = useState()
+
+    const headleLogin = (e) => {}
   return (
     <div className="container">
         <form>
@@ -14,7 +17,7 @@ const Login = () => {
                     type="email"
                     className="form-control rounded-0"
                     name="email"
-                    onChangeCapture={} 
+                    onChangeCapture={(e) => SetEmail(e.target.value)} 
                     placeholder="Email"/>
             </div>
             <div className="">
@@ -23,10 +26,13 @@ const Login = () => {
                     type="password"
                     className="form-control rounded-0"
                     name="email"
-                    onChangeCapture={} 
-                    placeholder="Email"/>
+                    onChangeCapture={(e) => SetPassword(e.target.value)} 
+                    placeholder="Password"/>
             </div>
         </form>
+        <div className="">
+            <p>Don't have an Account ? <Link to={'/SignUp'}>SignUp</Link></p>
+        </div>
     </div>
   )
 }
