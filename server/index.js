@@ -17,8 +17,10 @@ app.post('/register', (req, res) => {
     const {name, email, password} = req.body;
     bcrypy.hash(password, 10)
     .then(hash => {
-        
-    })
+        UserModel.create({name, email, password: hash})
+        .then(user => res.json({status: "OK"}))
+        .catch(err => res.json(err))
+    }).catch(err => res.json(err))
 })
 
 
