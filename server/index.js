@@ -5,6 +5,7 @@ const bcrypy = require("bcrypt")
 const jwt = require("jsonwebtoken")
 const cookieParser = require("cookie-parser")
 const UserModel = require("./Models/User")
+const e = require("express")
 
 const app = express()
 app.use(express.json())
@@ -21,6 +22,19 @@ app.post('/register', (req, res) => {
         .then(user => res.json({status: "OK"}))
         .catch(err => res.json(err))
     }).catch(err => res.json(err))
+})
+
+app.post('/login', (req, res) => {
+    const {email, password} = req.body;
+    UserModel.findOne({email: email})
+    .then(user => {
+        if(user){
+
+        }else{
+            return res.json("No use Found...!")
+        }
+
+    })
 })
 
 
