@@ -11,13 +11,13 @@ const Login = () => {
     const headleLogin = (e) => {
         e.preventDefault()
         axios.post('http://localhost:3001/login', {email, password})
-        .then(rec => {
-            //
+        .then(res => {
+            console.log(res.data)
         }).catch(err => console.log(err))
     }
   return (
     <div className="container">
-        <form>
+        <form onSubmit={headleLogin}>
             <div className="">
                 <label htmlFor="">Email</label>
                 <input 
