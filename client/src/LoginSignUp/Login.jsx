@@ -6,7 +6,8 @@ import { Link } from "react-router-dom"
 const Login = () => {
     const [email, SetEmail] = useState()
     const [password, SetPassword] = useState()
-
+    
+    axios.defaults.withCredentials = true;
     const headleLogin = (e) => {
         e.preventDefault()
         axios.post('http://localhost:3001/login', {email, password})

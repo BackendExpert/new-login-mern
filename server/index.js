@@ -9,7 +9,11 @@ const e = require("express")
 
 const app = express()
 app.use(express.json())
-app.use(cors())
+app.use(cors({
+    origin: ["http://127.0.0.1"],
+    methods: ["GET", "POST"],
+    credentials: true
+}))
 app.use(cookieParser())
 
 mongoose.connect('mongodb://127.0.0.1:27017/employee')
@@ -32,7 +36,9 @@ app.post('/login', (req, res) => {
             //password check
             bcrypt.compare(password, user.password, (err, response) =>{
                 if(response){
-
+                    //create token
+                    const token = jwt.sign({email: user.email, role: user.role},
+                        "jwt-secret-key", {expiresIn: '1d'})
                 }else{
                     return res.json("Password not match...!")
                 }
