@@ -1,18 +1,23 @@
 import { useState } from "react"
 import "bootstrap/dist/css/bootstrap.min.css"
 import axios from "axios"
-import { Link } from "react-router-dom"
+import { Link, Navigate, useNavigate } from "react-router-dom"
 
 const Login = () => {
     const [email, SetEmail] = useState()
     const [password, SetPassword] = useState()
-    
+    const navigate = useNavigate()
+
     axios.defaults.withCredentials = true;
     const headleLogin = (e) => {
         e.preventDefault()
         axios.post('http://localhost:3001/login', {email, password})
         .then(res => {
-            console.log(res.data)
+            if(res.data.Status === "Success"){
+                if(res.data.role === "admin"){
+                    navigate('/Dashboard')
+                }
+            }
         }).catch(err => console.log(err))
     }
   return (
