@@ -10,7 +10,7 @@ const e = require("express")
 const app = express()
 app.use(express.json())
 app.use(cors({
-    origin: ["http://127.0.0.1"],
+    origin: ["http://localhost:5173"],
     methods: ["GET", "POST"],
     credentials: true
 }))
