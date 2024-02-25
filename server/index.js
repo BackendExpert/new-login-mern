@@ -23,7 +23,7 @@ app.post('/register', (req, res) => {
     bcrypt.hash(password, 10)
     .then(hash => {
         UserModel.create({name, email, password: hash})
-        .then(user => res.json({status: "OK"}))
+        .then(user => res.json("Success"))
         .catch(err => res.json(err))
     }).catch(err => res.json(err))
 })
@@ -39,6 +39,8 @@ app.post('/login', (req, res) => {
                     //create token
                     const token = jwt.sign({email: user.email, role: user.role},
                         "jwt-secret-key", {expiresIn: '1d'})
+                    res.cookie('token', token)
+                    res.json("Success")
                 }else{
                     return res.json("Password not match...!")
                 }
